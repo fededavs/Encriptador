@@ -1,0 +1,19 @@
+Manual de usuario:
+
+Elegir la operacion que desea realizar 
+
+1- Registrar usuarios. 
+	En el registro de usuario debe ingresar nombre de la plataforma, 
+	nombre de usuario, y contrasena.
+
+2- Ingresar la clave de seguridad.
+	Se debe de ingresar la clave de seguridad para poder ver las contrasenas
+	reales del usuario. Al ingresar dicha clave podra acceder a toda la 
+	informacion de los usuarios registrados.
+
+3- Eliminar informacion de usuario.
+	Cuando desee eliminar la informacion que este almacenada solo debera
+	ingresar el nombre del usuario que desea eliminar siempre y cuando el
+	usuario se encuentre en el registro, de lo contrario, el programa le
+	avisara que el usuario ingresado no coincide con ningunos de los 
+	registros.
