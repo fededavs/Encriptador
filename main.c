@@ -7,7 +7,7 @@
 
 int main(void)
 {
-    SetConsoleTitle("GESTOR/ENCRIPTADOR");
+    	SetConsoleTitle("GESTOR/ENCRIPTADOR");
 	struct Contrasena *contrasenas[100];
 	short numContrasenas = 0;
 	short i;
@@ -32,9 +32,9 @@ int main(void)
 	if(archivo != NULL) //verifico q haya abierto correctamente
 	{
 	    while(!feof(archivo))
-        {
-           if(fgets(plataforma, sizeof(plataforma), archivo) != NULL && fgets(usuario, sizeof(usuario), archivo) != NULL &&
-              fgets(contrasena, sizeof(contrasena), archivo) != NULL){
+            {
+            	if(fgets(plataforma, sizeof(plataforma), archivo) != NULL && fgets(usuario, sizeof(usuario), archivo) != NULL &&
+              	fgets(contrasena, sizeof(contrasena), archivo) != NULL){
 
                 struct Contrasena *nuevaContrasena = (struct Contrasena *)malloc(sizeof(struct Contrasena));
 
@@ -64,20 +64,20 @@ int main(void)
 
 	do{
 		printf("\033[1;32m");
-        printf("\t\t*\t\t\t--------------------------------\t\t\t*\n");
-        printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
-        printf("\t\t*\t\t\t--------------------------------\t\t\t*\n\n");
+        	printf("\t\t*\t\t\t--------------------------------\t\t\t*\n");
+        	printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
+        	printf("\t\t*\t\t\t--------------------------------\t\t\t*\n\n");
 		printf("\033[1;34m");
-        printf("\n\t\t*\t\t\tMenu:\t\t\t\t\t\t\t*\n\n");
-        printf("\033[1;36m");
-        printf("\t\t*\t\t\t1. Agregar contrasena\t\t\t\t\t*\n\n");
-        printf("\033[1;33m");
-        printf("\t\t*\t\t\t2. Mostrar contrasenas\t\t\t\t\t*\n\n");
-        printf("\033[1;31m");
-        printf("\t\t*\t\t\t3. Eliminar contrasenas\t\t\t\t\t*\t\t\t\n\n");
+        	printf("\n\t\t*\t\t\tMenu:\t\t\t\t\t\t\t*\n\n");
+        	printf("\033[1;36m");
+        	printf("\t\t*\t\t\t1. Agregar contrasena\t\t\t\t\t*\n\n");
+        	printf("\033[1;33m");
+        	printf("\t\t*\t\t\t2. Mostrar contrasenas\t\t\t\t\t*\n\n");
+       	 	printf("\033[1;31m");
+        	printf("\t\t*\t\t\t3. Eliminar contrasenas\t\t\t\t\t*\t\t\t\n\n");
 		printf("\033[1;36m");
-        printf("\t\t*\t\t\t4. Manual de ayuda\t\t\t\t\t*\n\n");
-        printf("\033[1;33m");
+        	printf("\t\t*\t\t\t4. Manual de ayuda\t\t\t\t\t*\n\n");
+       	 	printf("\033[1;33m");
 		printf("\t\t*\t\t\t5. Encriptar/Desencriptar archivo por nombre\t\t*\n\n");
 		printf("\033[1;31m");
 		printf("\t\t*\t\t\t6. Salir\t\t\t\t\t\t*\t\t\t\n\n");
@@ -90,131 +90,131 @@ int main(void)
 
 		switch(opcion)
 		{
-        case '1':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t  CONTRASENA\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            agregarContrasena(contrasenas, &numContrasenas);
-
-            break;
-        case '2':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t  CONTRASENAS\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            printf("\n\t\t\t\tSeleccione una opcion:\n");
-            printf("\n\t\t\t\t1. Ver todos los usuarios registrados.");
-            printf("\n\t\t\t\t2. Ver informacion completa de un usuario.\n\t\t\t\t");
-            scanf("%c", &buscar);
-            fflush(stdin);
-
-            if(buscar == '1')
-                imprimirUsuarios(contrasenas, numContrasenas);
-            else if(buscar == '2')
-            {
-                printf("\t\t\t\tIngrese el pin para ver la contrasena: ");
-                scanf("%4s", input_pin);
-                fflush(stdin);
-
-                if(strcmp(pin, input_pin) == 0)
-                {
-                    for(i=0; i<numContrasenas; i++)
-                    {
-                        desencriptado = encriptar(contrasenas[i]->contrasena);
-                        strcpy(contrasenas[i]->contrasena, desencriptado);
-                        free(desencriptado);
-                    }
-                    mostrarUsuario(contrasenas, numContrasenas);
-
-                    for(i=0; i<numContrasenas; i++)
-                    {
-                        encriptado = encriptar(contrasenas[i]->contrasena);
-                        strcpy(contrasenas[i]->contrasena, encriptado);
-                        free(encriptado);
-                    }
-                }
-            }
-            else
-                printf("\n\t\t\t\tOpcion invalida.\n");
-
-            printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-            getch();
-            system("cls");
-
-            break;
-        case '3':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t   ELIMINAR\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            printf("\t\t\t\tIngrese el nombre de usuario que desea borrar: \n\n\t\t\t\t");
-            fgets(borrado, sizeof(borrado), stdin);
-			fflush(stdin);
-
-            borrarUsuario(contrasenas, &numContrasenas, borrado, confirmaborrado);
-
-            break;
-        case '4':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t     AYUDA\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            manual_ayuda();
-
-            break;
-        case '5':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            printf("\t\t\t\tIngrese el nombre del archivo con su extension al final(.txt): \n\t\t\t\t");
-            scanf(" %49[^\n]s", nombrearchivo);
-            fflush(stdin);
-
-            printf("\t\t\t\tIngrese el pin de seguridad: ");
-            scanf("%4s", input_pin);
-            fflush(stdin);
-
-            if(strcmp(pin, input_pin) == 0)
-            {
-                //verifico el nombre contenga la extension .txt
-                extension = strstr(nombrearchivo, ".txt");
-
-                if(extension != NULL){
-                    encriptarDesencriptarArchivo(nombrearchivo);
-                    break;
-                }
-                printf("\t\t\t\tEl nombre del archivo debe tener la extension .txt");
-                printf("\n\n\t\t\t\tPresione cualquier tecla para continuar...");
-                getch();
-                system("cls");
-            }
-            else{
-                printf("\n\t\t\t\tEl pin es incorrecto.\n");
-                printf("\n\n\t\t\t\tPresione cualquier tecla para continuar...");
-                getch();
-                system("cls");
-            }
-
-            break;
-        case '6':
-            system("cls");
-            printf("\t\t\t\t\t--------------------------------\t\t\n");
-            printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
-            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
-            printf("\t\t\t\tSaliendo del programa...\n");
-
-            break;
-        default:
-            printf("\t\t\t\tOpcion no valida. Por favor, seleccione una opcion valida.\n");
-
-            printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-            getch();
-            system("cls");
-
-            break;
-        }
+	        case '1':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t  CONTRASENA\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            agregarContrasena(contrasenas, &numContrasenas);
+	
+	            break;
+	        case '2':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t  CONTRASENAS\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            printf("\n\t\t\t\tSeleccione una opcion:\n");
+	            printf("\n\t\t\t\t1. Ver todos los usuarios registrados.");
+	            printf("\n\t\t\t\t2. Ver informacion completa de un usuario.\n\t\t\t\t");
+	            scanf("%c", &buscar);
+	            fflush(stdin);
+	
+	            if(buscar == '1')
+	                imprimirUsuarios(contrasenas, numContrasenas);
+	            else if(buscar == '2')
+	            {
+	                printf("\t\t\t\tIngrese el pin para ver la contrasena: ");
+	                scanf("%4s", input_pin);
+	                fflush(stdin);
+	
+	                if(strcmp(pin, input_pin) == 0)
+	                {
+	                    for(i=0; i<numContrasenas; i++)
+	                    {
+	                        desencriptado = encriptar(contrasenas[i]->contrasena);
+	                        strcpy(contrasenas[i]->contrasena, desencriptado);
+	                        free(desencriptado);
+	                    }
+	                    mostrarUsuario(contrasenas, numContrasenas);
+	
+	                    for(i=0; i<numContrasenas; i++)
+	                    {
+	                        encriptado = encriptar(contrasenas[i]->contrasena);
+	                        strcpy(contrasenas[i]->contrasena, encriptado);
+	                        free(encriptado);
+	                    }
+	                }
+	            }
+	            else
+	                printf("\n\t\t\t\tOpcion invalida.\n");
+	
+	            printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	            getch();
+	            system("cls");
+	
+	            break;
+	        case '3':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t   ELIMINAR\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            printf("\t\t\t\tIngrese el nombre de usuario que desea borrar: \n\n\t\t\t\t");
+	            fgets(borrado, sizeof(borrado), stdin);
+				fflush(stdin);
+	
+	            borrarUsuario(contrasenas, &numContrasenas, borrado, confirmaborrado);
+	
+	            break;
+	        case '4':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t     AYUDA\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            manual_ayuda();
+	
+	            break;
+	        case '5':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            printf("\t\t\t\tIngrese el nombre del archivo con su extension al final(.txt): \n\t\t\t\t");
+	            scanf(" %49[^\n]s", nombrearchivo);
+	            fflush(stdin);
+	
+	            printf("\t\t\t\tIngrese el pin de seguridad: ");
+	            scanf("%4s", input_pin);
+	            fflush(stdin);
+	
+	            if(strcmp(pin, input_pin) == 0)
+	            {
+	                //verifico el nombre contenga la extension .txt
+	                extension = strstr(nombrearchivo, ".txt");
+	
+	                if(extension != NULL){
+	                    encriptarDesencriptarArchivo(nombrearchivo);
+	                    break;
+	                }
+	                printf("\t\t\t\tEl nombre del archivo debe tener la extension .txt");
+	                printf("\n\n\t\t\t\tPresione cualquier tecla para continuar...");
+	                getch();
+	                system("cls");
+	            }
+	            else{
+	                printf("\n\t\t\t\tEl pin es incorrecto.\n");
+	                printf("\n\n\t\t\t\tPresione cualquier tecla para continuar...");
+	                getch();
+	                system("cls");
+	            }
+	
+	            break;
+	        case '6':
+	            system("cls");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n");
+	            printf("\t\t\t\t\t\t  ENCRIPTADOR\n");
+	            printf("\t\t\t\t\t--------------------------------\t\t\n\n");
+	            printf("\t\t\t\tSaliendo del programa...\n");
+	
+	            break;
+	        default:
+	            printf("\t\t\t\tOpcion no valida. Por favor, seleccione una opcion valida.\n");
+	
+	            printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	            getch();
+	            system("cls");
+	
+	            break;
+	        }
 	}while(opcion != '6');
 
 	//libero la memoria
@@ -229,7 +229,7 @@ void agregarContrasena(struct Contrasena *contrasenas[], short *numContras)
 	char *encriptado = NULL;
 	struct Contrasena *nuevaContrasena = ingresarDatos();
 
-	//encriptado de contraseÒa
+	//encriptado de contrase√±a
 	encriptado = encriptar(nuevaContrasena->contrasena);
 	strcpy(nuevaContrasena->contrasena, encriptado);
 	free(encriptado);
@@ -269,7 +269,7 @@ struct Contrasena *ingresarDatos()
 	fflush(stdin);
 
 	printf("\n\t\t\t\tIngrese el nombre de usuario: ");
-    scanf(" %49[^\n]", datos->usuario);
+    	scanf(" %49[^\n]", datos->usuario);
 	fflush(stdin);
 
 	printf("\n\t\t\t\tIngrese la contrasena: ");
@@ -325,7 +325,7 @@ void mostrarUsuario(struct Contrasena *contrasenas[], short numContras)
 void borrarUsuario(struct Contrasena *contrasena[],short *numContras, char borrado[], char confirmacion)
 {
 	short i, j, encontrado = 0;
-    borrado[strcspn(borrado, "\n")]= '\0'; //eliminar salto de linea
+    	borrado[strcspn(borrado, "\n")]= '\0'; //eliminar salto de linea
 
 	// buscar y eliminar el usuario del array en memoria
 	for(i=0; i<*numContras; i++)
@@ -333,54 +333,54 @@ void borrarUsuario(struct Contrasena *contrasena[],short *numContras, char borra
 		if(strcmp(contrasena[i]->usuario, borrado) == 0)
 		{
 		    printf("\t\t\t\tEsta seguro de que desea borrar el usuario '%s'?\n\t\t\t\t si o no(S/N): ", borrado);
-            scanf("%1s", &confirmacion);
+            	    scanf("%1s", &confirmacion);
 
-            if(confirmacion == 's' || confirmacion == 'S')
-            {
-                free(contrasena[i]);
+             	    if(confirmacion == 's' || confirmacion == 'S')
+            	    {
+                	free(contrasena[i]);
 
-                for(j=i; j<*numContras-1; j++)
-                    contrasena[j] = contrasena[j+1];
+                	for(j=i; j<*numContras-1; j++)
+                    	contrasena[j] = contrasena[j+1];
 
-                (*numContras)--;
-                encontrado = 1;
-                i--;
-            }
-            else{
-                printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-                getch();
-                system("cls");
-                return;
-            }
+	                (*numContras)--;
+	                encontrado = 1;
+	                i--;
+	            }
+	            else{
+	                printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	                getch();
+	                system("cls");
+	                return;
+	            }
 		}
 	}
 
-    if(!encontrado){
-        printf("\n\t\t\t\tUsuario no encontrado.\n");
-        printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-        getch();
-        system("cls");
-    }
-    else{
-        // abrir el archivo para reescribirlo
-        FILE *archivo = fopen("contrasenas.txt", "wt");
-
-        if(archivo == NULL){
-            printf("\t\t\t\t\tError al abrir el archivo\n");
-            exit(0);
-        }
-        // escribir las contraseÒas restantes en el archivo
-        for(i=0; i<*numContras; i++){
-            fprintf(archivo,"%s\n%s\n%s\n", contrasena[i]->plataforma, contrasena[i]->usuario, contrasena[i]->contrasena);
-        }
-
-        fclose(archivo);
-        printf("\n\t\t\t\tUsuario borrado correctamente.\n");
-
-        printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-        getch();
-        system("cls");
-    }
+	if(!encontrado){
+		printf("\n\t\t\t\tUsuario no encontrado.\n");
+		printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	        getch();
+	        system("cls");
+	}
+	else{
+	        // abrir el archivo para reescribirlo
+	        FILE *archivo = fopen("contrasenas.txt", "wt");
+	
+	        if(archivo == NULL){
+	            printf("\t\t\t\t\tError al abrir el archivo\n");
+	            exit(0);
+	        }
+	        // escribir las contrase√±as restantes en el archivo
+	        for(i=0; i<*numContras; i++){
+	            fprintf(archivo,"%s\n%s\n%s\n", contrasena[i]->plataforma, contrasena[i]->usuario, contrasena[i]->contrasena);
+	        }
+	
+	        fclose(archivo);
+	        printf("\n\t\t\t\tUsuario borrado correctamente.\n");
+	
+	        printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	        getch();
+	        system("cls");
+	}
 }
 
 void manual_ayuda()
@@ -413,10 +413,10 @@ void encriptarDesencriptarArchivo(char nombreArchivo[])
 
 	FILE *archivo = fopen(nombreArchivo, "rt");
 	if(archivo != NULL)
-    {
+    	{
 		fseek(archivo, 0, SEEK_END); //coloco posicion de lectura al final del archivo
-		longitud = ftell(archivo); //guardo el tamaÒo total del archivo
-        fseek(archivo, 0, SEEK_SET); //posicion de lectura desde el principio
+		longitud = ftell(archivo); //guardo el tama√±o total del archivo
+        	fseek(archivo, 0, SEEK_SET); //posicion de lectura desde el principio
 
 		contenido = (char*)malloc((longitud + 1) * sizeof(char));
 
@@ -434,25 +434,25 @@ void encriptarDesencriptarArchivo(char nombreArchivo[])
 		exit(0);
 	}
 
-    encriptado = encriptar(contenido);
-    free(contenido);
+    	encriptado = encriptar(contenido);
+    	free(contenido);
 
-    archivo = fopen(nombreArchivo, "wt");
-    if(archivo != NULL)
-    {
-        fprintf(archivo, "%s", encriptado);
-        fclose(archivo);
-        free(encriptado);
-        printf("\t\t\t\tArchivo modificado correctamente.\n");
-
-        printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
-        getch();
-        system("cls");
-    }
-    else{
-        printf("\t\t\t\tError al abrir el archivo\n");
-        exit(0);
-    }
+    	archivo = fopen(nombreArchivo, "wt");
+	if(archivo != NULL)
+	{
+		fprintf(archivo, "%s", encriptado);
+	        fclose(archivo);
+	        free(encriptado);
+	        printf("\t\t\t\tArchivo modificado correctamente.\n");
+	
+	        printf("\n\t\t\t\tPresione cualquier tecla para continuar...");
+	        getch();
+	        system("cls");
+	}
+	else{
+	        printf("\t\t\t\tError al abrir el archivo\n");
+	        exit(0);
+	}
 }
 
 char *encriptar(char *contra)
